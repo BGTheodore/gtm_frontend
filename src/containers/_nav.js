@@ -1,5 +1,6 @@
 import React from 'react'
-import CIcon from '@coreui/icons-react'
+import CIcon from '@coreui/icons-react';
+
 
 const _nav =  [
   {
@@ -16,15 +17,15 @@ const _nav =  [
   },
   {
     _tag: 'CSidebarNavItem',
-    name: 'Echelle',
-    to: '/dashboard',
+    name: 'Legende',
+    to: '/legende',
     icon: <CIcon name="cil-drop" customClasses="c-sidebar-nav-icon"/>,
   },
   {
     _tag: 'CSidebarNavItem',
     name: 'À Propos',
     to: '/about',
-    icon: <CIcon name="cil-calculator" customClasses="c-sidebar-nav-icon"/>,
+    icon: <CIcon name="cil-italic" customClasses="c-sidebar-nav-icon"/>,
   },
   // {
   //   _tag: 'CSidebarNavTitle',

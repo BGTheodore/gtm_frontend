@@ -1,13 +1,11 @@
-import React ,{useState, useEffect,useContext} from 'react';
+import React ,{useContext} from 'react';
 import {Formik, Form} from 'formik';
 import * as Yup from 'yup';
 import {
   CButton,
   CCol,
-  CContainer,
   CInputGroup,
   CInputGroupAppend,
-  CRow
 } from '@coreui/react'
 import CIcon from '@coreui/icons-react';
 import { SearchTextField } from './SearchTextField';
@@ -15,8 +13,6 @@ import { EssaiContext } from "../../../EssaisContext";
 import { FaSync } from "react-icons/fa";
 
 const Search = () => {
-
-  const [searchContent, setSearchContent] = useState(null);
   const [globalData, setGlobalData] = useContext(EssaiContext);
 
   const initVal ={
@@ -29,11 +25,12 @@ const Search = () => {
   })
 
   const reset = () => {
-    fetch('http://localhost:8080/api/type_essais')
-    .then((response) => response.json())
-    .then((json) => setGlobalData({...globalData,
-      essais:json}
-      )); 
+    window.location.reload();
+    // fetch('http://localhost:8080/api/type_essais')
+    // .then((response) => response.json())
+    // .then((json) => setGlobalData({...globalData,
+    //   essais:json}
+    //   )); 
   }
   return (
     <Formik
@@ -58,33 +55,30 @@ const Search = () => {
        { formik => (
 
        <Form>
-      <CContainer>
-        <CRow className="justify-content-center">
+
           <CCol md="12">     
             <CInputGroup className="input-prepend">
-              {/* <CInputGroupPrepend>
-                <CInputGroupText>
-                  <CIcon name="cil-magnifying-glass" />
-                </CInputGroupText>
-              </CInputGroupPrepend> */} 
-              <CInputGroupAppend>
-              <SearchTextField  name="searchContent" type="text" placeholder="Ex: Ouest" />
-                <CButton color="info" type="submit" style={{borderRadius:'30px', height:'35px', width:'35px'}}>
-                  <CIcon name="cil-magnifying-glass" />
-                </CButton>
-               
+
+              <CInputGroupAppend >
+                <SearchTextField  name="searchContent" type="text" placeholder="Ex: Ouest" />
+                <div style={{marginTop:20, marginLeft:5}}>
+                  <CButton color="dark" variant="outline" type="submit" style={{ height:'35px', width:'35px'}}>
+                    <CIcon name="cil-magnifying-glass" />
+                  </CButton>
+                  <CButton color="dark" variant="outline" 
+                  style={{ height:'35px', width:'35px', marginLeft:5}}
+                  onClick={()=>{reset()}}
+                  >
+                    <FaSync />
+                  </CButton>
+                </div>
+              
               </CInputGroupAppend>
-              <CButton color="warning" variant="outline" 
-              style={{borderRadius:'30px', height:'35px', width:'35px'}}
-              onClick={()=>{reset()}}
-              >
-                  <FaSync />
-                </CButton>
+              
             </CInputGroup>
           </CCol>
-        </CRow>
-        {/* <hr /> */}
-      </CContainer>
+
+    
       </Form>  
    
       )
